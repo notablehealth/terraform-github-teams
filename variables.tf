@@ -13,10 +13,10 @@ variable "teams" {
     description = string
     privacy     = optional(string, "closed")
     parent_team = optional(string)
-    members = list(object({
+    members = optional(list(object({
       username = string
       role     = optional(string, "member")
-    }))
+    })))
   }))
   default = {}
 }
