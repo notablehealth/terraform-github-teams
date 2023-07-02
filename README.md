@@ -1,18 +1,16 @@
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-# terraform-google-module-template
+# terraform-github-teams
 
-[![Releases](https://img.shields.io/github/v/release/notablehealth/terraform-google-module-template)](https://github.com/notablehealth/terraform-google-module-template/releases)
+[![Releases](https://img.shields.io/github/v/release/notablehealth/terraform-github-teams)](https://github.com/notablehealth/terraform-github-teams/releases)
 
-[Terraform Module Registry](https://registry.terraform.io/modules/notablehealth/module-template/google)
+[Terraform Module Registry](https://registry.terraform.io/modules/notablehealth/teams/github)
 
-Template for creating a Terraform module for Google
+Terrafoorm module to manage GitHub teams
 
 ## Features
 
-- base terraform files
-- pre-commit setup
-- GitHub actions setup
+- Mnaage GitHub teams
 
 ## Usage
 
@@ -20,7 +18,7 @@ Basic usage of this module is as follows:
 
 ```hcl
 module "example" {
-    source = "notablehealth/<module-name>/google"
+    source = "notablehealth/<module-name>/github"
     # Recommend pinning every module to a specific version
     # version = "x.x.x"
 }
@@ -30,12 +28,14 @@ module "example" {
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.7 |
-| <a name="requirement_google"></a> [google](#requirement\_google) | >= 4.51.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5 |
+| <a name="requirement_github"></a> [github](#requirement\_github) | ~> 5.29 |
 
 ## Providers
 
-No providers.
+| Name | Version |
+|------|---------|
+| <a name="provider_github"></a> [github](#provider\_github) | 5.29.0 |
 
 ## Modules
 
@@ -43,19 +43,28 @@ No modules.
 
 ## Resources
 
-No resources.
+| Name | Type |
+|------|------|
+| [github_team.teams_level2](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team) | resource |
+| [github_team.teams_level3](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team) | resource |
+| [github_team.teams_level4](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team) | resource |
+| [github_team.teams_root](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_sample_input"></a> [sample\_input](#input\_sample\_input) | Simple string variable | `string` | `"sample"` | no |
+| <a name="input_github_owner"></a> [github\_owner](#input\_github\_owner) | GitHub organization or user | `string` | `"notablehealth"` | no |
+| <a name="input_teams"></a> [teams](#input\_teams) | GitHub Team configuration objects | <pre>map(object({<br>    name        = string<br>    description = string<br>    privacy     = optional(string, "closed")<br>    parent_team = optional(string)<br>    members = list(object({<br>      username = string<br>      role     = optional(string, "member")<br>    }))<br>  }))</pre> | `{}` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_sample_output"></a> [sample\_output](#output\_sample\_output) | output value description |
+| <a name="output_teams_level2"></a> [teams\_level2](#output\_teams\_level2) | GitHub level 2 teams |
+| <a name="output_teams_level3"></a> [teams\_level3](#output\_teams\_level3) | GitHub level 3 teams |
+| <a name="output_teams_level4"></a> [teams\_level4](#output\_teams\_level4) | GitHub level 4 teams |
+| <a name="output_teams_root"></a> [teams\_root](#output\_teams\_root) | GitHub root level teams |
 
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

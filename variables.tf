@@ -1,18 +1,22 @@
 
-#variable "validated" {
-#  description = "String variable with validation"
-#  type        = string
-#  validation {
-#    condition = contains(
-#      ["one", "two", "three", "four"],
-#      var.validated
-#    )
-#    error_message = "Must be one of: one, two, three, four."
-#  }
-#}
 
-variable "sample_input" {
-  description = "Simple string variable"
+variable "github_owner" {
+  description = "GitHub organization or user"
   type        = string
-  default     = "sample"
+  default     = "notablehealth"
+}
+
+variable "teams" {
+  description = "GitHub Team configuration objects"
+  type = map(object({
+    name        = string
+    description = string
+    privacy     = optional(string, "closed")
+    parent_team = optional(string)
+    members = list(object({
+      username = string
+      role     = optional(string, "member")
+    }))
+  }))
+  default = {}
 }

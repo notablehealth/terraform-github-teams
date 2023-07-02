@@ -51,7 +51,7 @@ content: |-
 
   ```hcl
   module "example" {
-  {{"    " -}} source = "notablehealth/<module-name>/google"
+  {{"    " -}} source = "notablehealth/<module-name>/github"
   {{"    " -}} # Recommend pinning every module to a specific version
   {{"    " -}} # version = "x.x.x"
   {{- if .Module.RequiredInputs }}
