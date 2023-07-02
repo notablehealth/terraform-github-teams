@@ -10,7 +10,14 @@ Terrafoorm module to manage GitHub teams
 
 ## Features
 
-- Mnaage GitHub teams
+- Manage GitHub teams
+  - Manage nested teams (currently 4 levels)
+- Manage team members
+
+Terraform doesn't handle dynamic recursion or resource dependencies. To do
+nested teams, the code would either need to be run multiple times or manage
+a fixed maximum number of levels. This module manages up to 4 levels of nesting.
+But could easily be expanded to more.
 
 ## Usage
 

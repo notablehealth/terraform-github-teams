@@ -9,8 +9,8 @@
  *
  * ## Features
  *
- * - Mnaage GitHub teams
- #   - Manage nested teams (currently 4 levels)
+ * - Manage GitHub teams
+ *   - Manage nested teams (currently 4 levels)
  * - Manage team members
  *
  * Terraform doesn't handle dynamic recursion or resource dependencies. To do
