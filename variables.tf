@@ -1,9 +1,8 @@
 
 
 variable "github_owner" {
-  description = "GitHub organization or user"
+  description = "GitHub organization"
   type        = string
-  default     = "notablehealth"
 }
 
 variable "teams" {

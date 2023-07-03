@@ -8,6 +8,12 @@
 
 Terrafoorm module to manage GitHub teams
 
+## Requirements
+
+- GitHub personal access token with admin rights to an organization
+  - Provide toekn via environment variable
+  >> export GITHUB\_TOKEN='TOKEN'
+
 ## Features
 
 - Manage GitHub teams
@@ -28,6 +34,9 @@ module "example" {
     source = "notablehealth/<module-name>/github"
     # Recommend pinning every module to a specific version
     # version = "x.x.x"
+
+    # Required variables
+    github_owner =
 }
 ```
 
@@ -62,7 +71,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_github_owner"></a> [github\_owner](#input\_github\_owner) | GitHub organization or user | `string` | `"notablehealth"` | no |
+| <a name="input_github_owner"></a> [github\_owner](#input\_github\_owner) | GitHub organization | `string` | n/a | yes |
 | <a name="input_teams"></a> [teams](#input\_teams) | GitHub Team configuration objects | <pre>map(object({<br>    name        = string<br>    description = string<br>    privacy     = optional(string, "closed")<br>    parent_team = optional(string)<br>    members = optional(list(object({<br>      full_name = optional(string)<br>      username  = string<br>      role      = optional(string, "member")<br>    })))<br>  }))</pre> | `{}` | no |
 
 ## Outputs

@@ -7,6 +7,12 @@
  *
  * Terrafoorm module to manage GitHub teams
  *
+ * ## Requirements
+ *
+ * - GitHub personal access token with admin rights to an organization
+ *   - Provide toekn via environment variable
+ *   >> export GITHUB_TOKEN='TOKEN'
+ *
  * ## Features
  *
  * - Manage GitHub teams
