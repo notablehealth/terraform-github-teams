@@ -11,7 +11,7 @@
  *
  * - GitHub personal access token with admin rights to an organization
  *   - Provide token via environment variable
- *  >>export GITHUB_TOKEN='TOKEN'
+ *   >>export GITHUB_TOKEN='TOKEN'
  *
  * ## Features
  *
@@ -82,7 +82,7 @@ resource "github_team_members" "self" {
   # Build team name -> id
   # just need id or slug
   #team_id = github_team.self[each.value.name].id
-  team_id = replace(lower(each.value.team), "/[ .]/", "-")
+  team_id = replace(lower(each.value.name), "/[ .]/", "-")
 
   dynamic "members" {
     for_each = each.value.members

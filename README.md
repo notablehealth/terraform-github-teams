@@ -12,7 +12,7 @@ Terraform module to manage GitHub teams
 
 - GitHub personal access token with admin rights to an organization
   - Provide token via environment variable
- >>export GITHUB\_TOKEN='TOKEN'
+  >>export GITHUB\_TOKEN='TOKEN'
 
 ## Features
 
