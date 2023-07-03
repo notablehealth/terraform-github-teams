@@ -69,18 +69,21 @@ resource "github_team" "teams_level4" {
   depends_on                = [github_team.teams_level3]
 }
 
-# May take multiple runs
+resource "github_team_members" "self" {
+  for_each = { for team in var.teams : team.name => team
+  if team.members != null }
 
-#resource "github_team_members" "self" {
-#  for_each = var.teams
-#  team_id = github_team.self[each.value.name].id
-#
-#  dynamic "members" {
-#    for_each = each.value.members
-#    content {
-#      role     = members.value.role
-#      username = members.value.username
-#    }
-#  }
-#  depends_on = [ github_team.self ]
-#}
+  # Build team name -> id
+  # just need id or slug
+  #team_id = github_team.self[each.value.name].id
+  team_id = replace(lower(each.value.team), "/[ .]/", "-")
+
+  dynamic "members" {
+    for_each = each.value.members
+    content {
+      role     = members.value.role
+      username = members.value.username
+    }
+  }
+  depends_on = [github_team.teams_root, github_team.teams_level2, github_team.teams_level3, github_team.teams_level4]
+}

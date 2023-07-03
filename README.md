@@ -56,13 +56,14 @@ No modules.
 | [github_team.teams_level3](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team) | resource |
 | [github_team.teams_level4](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team) | resource |
 | [github_team.teams_root](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team) | resource |
+| [github_team_members.self](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team_members) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_github_owner"></a> [github\_owner](#input\_github\_owner) | GitHub organization or user | `string` | `"notablehealth"` | no |
-| <a name="input_teams"></a> [teams](#input\_teams) | GitHub Team configuration objects | <pre>map(object({<br>    name        = string<br>    description = string<br>    privacy     = optional(string, "closed")<br>    parent_team = optional(string)<br>    members = optional(list(object({<br>      username = string<br>      role     = optional(string, "member")<br>    })))<br>  }))</pre> | `{}` | no |
+| <a name="input_teams"></a> [teams](#input\_teams) | GitHub Team configuration objects | <pre>map(object({<br>    name        = string<br>    description = string<br>    privacy     = optional(string, "closed")<br>    parent_team = optional(string)<br>    members = optional(list(object({<br>      full_name = optional(string)<br>      username  = string<br>      role      = optional(string, "member")<br>    })))<br>  }))</pre> | `{}` | no |
 
 ## Outputs
 
