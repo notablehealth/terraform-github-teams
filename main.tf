@@ -5,13 +5,13 @@
  *
  * [Terraform Module Registry](https://registry.terraform.io/modules/notablehealth/teams/github)
  *
- * Terrafoorm module to manage GitHub teams
+ * Terraform module to manage GitHub teams
  *
  * ## Requirements
  *
  * - GitHub personal access token with admin rights to an organization
  *   - Provide token via environment variable
- *   >>export GITHUB_TOKEN='TOKEN'
+ *  >>export GITHUB_TOKEN='TOKEN'
  *
  * ## Features
  *
