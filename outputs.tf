@@ -15,3 +15,12 @@ output "teams_level4" {
   description = "GitHub level 4 teams"
   value       = local.teams_level4
 }
+
+output "repositories" {
+  description = "Team repository permissions"
+  value = {
+    for team in var.teams : team.name => {
+      repo = team.repository
+    } if team.repository != null
+  }
+}

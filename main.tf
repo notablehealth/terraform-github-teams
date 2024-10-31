@@ -79,9 +79,6 @@ resource "github_team_members" "self" {
   for_each = { for team in var.teams : team.name => team
   if team.members != null }
 
-  # Build team name -> id
-  # just need id or slug
-  #team_id = github_team.self[each.value.name].id
   team_id = replace(lower(each.value.name), "/[ .]/", "-")
 
   dynamic "members" {
@@ -91,5 +88,27 @@ resource "github_team_members" "self" {
       username = members.value.username
     }
   }
-  depends_on = [github_team.teams_root, github_team.teams_level2, github_team.teams_level3, github_team.teams_level4]
+  depends_on = [
+    github_team.teams_root, github_team.teams_level2,
+    github_team.teams_level3, github_team.teams_level4
+  ]
+}
+
+resource "github_team_repository" "self" {
+  for_each   = { for team in var.teams : team.name => team if team.parent_team == null && team.repository != null }
+  team_id    = github_team.teams_root[each.value.name].id
+  repository = each.value.repository.name
+  permission = each.value.repository.permission
+}
+resource "github_team_settings" "self" {
+  for_each = { for team in var.teams : team.name => team if team.parent_team == null && team.review_request_delegation != null }
+  team_id  = github_team.teams_root[each.value.name].id
+  dynamic "review_request_delegation" {
+    for_each = each.value.review_request_delegation != null ? [each.value.review_request_delegation] : []
+    content {
+      algorithm    = review_request_delegation.value.algorithm
+      member_count = review_request_delegation.value.member_count
+      notify       = review_request_delegation.value.notify
+    }
+  }
 }
